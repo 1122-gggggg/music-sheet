@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 醫聲室內樂音樂會節目單</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #12213b;
+            --accent-color: #d4af37;
+            --text-color: #2c2c2c;
+            --text-light: #666666;
+            --paper-bg: #fcfaf6;
+            --a4-width: 210mm;
+            --a4-height: 297mm;
+            
+            /* 更新字體堆疊：英文優先使用優雅的 Cormorant Garamond，中文使用 Noto Serif TC */
+            --serif-font: 'Cormorant Garamond', 'Noto Serif TC', 'PMingLiU', serif;
+            --sans-font: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            --eng-title-font: 'Cinzel', serif;
+        }
+
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        
+        body {
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 40px 0;
+            font-family: var(--serif-font);
+            font-weight: 400;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            background-color: var(--paper-bg);
+            width: var(--a4-width);
+            height: var(--a4-height);
+            position: relative;
+            padding: 20mm 25mm 25mm 25mm; 
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            break-after: page;
+        }
+
+        .page:not(.cover)::before {
+            content: "";
+            position: absolute;
+            top: 12mm; left: 12mm; right: 12mm; bottom: 12mm;
+            border: 0.5pt solid var(--accent-color);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        h1, h2, h3, h4 { color: var(--primary-color); position: relative; z-index: 2; margin: 0; font-weight: 600; }
+        
+        h2 { 
+            font-size: 20pt; 
+            text-align: center; 
+            letter-spacing: 12pt; /* 加大中文大標題字距 */
+            margin-bottom: 10mm; 
+            padding-bottom: 4mm;
+            position: relative;
+        }
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40mm;
+            height: 1pt;
+            background-color: var(--accent-color);
+        }
+
+        /* --- 封面特化設計 --- */
+        .cover { 
+            background-color: var(--paper-bg);
+            color: var(--primary-color);
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+        }
+        .cover::before {
+            content: "";
+            position: absolute;
+            top: 15mm; left: 15mm; right: 15mm; bottom: 15mm;
+            border: 1pt solid var(--accent-color);
+            pointer-events: none;
+        }
+        .cover::after {
+            content: "";
+            position: absolute;
+            top: 17mm; left: 17mm; right: 17mm; bottom: 17mm;
+            border: 0.5pt solid rgba(212, 175, 55, 0.4);
+            pointer-events: none;
+        }
+        .cover .subtitle { 
+            font-family: var(--eng-title-font);
+            font-size: 13pt; 
+            color: var(--accent-color); 
+            letter-spacing: 6pt; 
+            margin-bottom: 8mm; 
+        }
+        .cover h1 { 
+            font-family: 'Noto Serif TC', serif;
+            font-size: 36pt; 
+            color: var(--primary-color);
+            letter-spacing: 12pt; 
+            font-weight: 600; 
+            margin-bottom: 8mm;
+        }
+        .cover-divider { 
+            width: 15mm; 
+            height: 1.5pt; 
+            background: var(--accent-color); 
+            margin: 0 auto 12mm auto; 
+        }
+        .concert-info { 
+            font-size: 13pt; 
+            line-height: 2; 
+            color: var(--primary-color); 
+            letter-spacing: 2pt;
+        }
+        .concert-info .venue {
+            font-family: var(--sans-font);
+            font-size: 10pt;
+            color: var(--text-light);
+            margin-top: 2mm;
+            letter-spacing: 1.5pt;
+        }
+
+        /* --- 曲目表排版 --- */
+        .program-list { width: 100%; position: relative; z-index: 2; margin-top: 2mm; }
+        .program-item { margin-bottom: 4.5mm; width: 100%; }
+        
+        .program-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            width: 100%;
+            margin-bottom: 1mm;
+        }
+
+        .program-title-group { text-align: left; }
+        
+        .program-title-group h4 {
+            font-size: 10.5pt;
+            margin: 0;
+            display: inline-block;
+            letter-spacing: 1pt;
+            font-weight: 600;
+        }
+        
+        .leader {
+            flex-grow: 1;
+            border-bottom: 1.2pt dotted rgba(212, 175, 55, 0.6);
+            margin: 0 4mm;
+            position: relative;
+            top: -3px;
+        }
+
+        .performer-name-only {
+            font-family: var(--sans-font);
+            font-size: 8.5pt;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-align: right; 
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .program-eng-sub {
+            font-family: var(--eng-title-font);
+            font-size: 7.5pt;
+            color: var(--text-light);
+            display: block;
+            margin-top: 0.5mm;
+            letter-spacing: 0.5pt;
+        }
+
+        .intermission { 
+            text-align: center; 
+            margin: 6mm 0; 
+            padding: 2mm; 
+            font-family: var(--sans-font); 
+            color: var(--accent-color); 
+            letter-spacing: 12pt; 
+            font-size: 10pt; 
+            position: relative;
+            z-index: 2;
+        }
+        .intermission::before, .intermission::after {
+            content: "✦";
+            font-size: 8pt;
+            margin: 0 4mm;
+            color: var(--accent-color);
+            opacity: 0.5;
+        }
+
+        /* --- 樂曲解說排版 (強調呼吸感) --- */
+        .content-section { 
+            margin-bottom: 12mm; /* 增加每個樂曲之間的距離 */
+            position: relative; 
+            z-index: 2; 
+        }
+        .content-section h3 { 
+            font-size: 12pt; 
+            margin-bottom: 2mm; 
+            letter-spacing: 1.5pt;
+            display: flex;
+            align-items: center;
+        }
+        .content-section h3::before { 
+            content: ""; 
+            display: inline-block;
+            width: 3mm;
+            height: 3mm;
+            background-color: var(--accent-color);
+            margin-right: 3mm;
+            transform: rotate(45deg);
+        }
+        .eng-title { 
+            font-family: var(--eng-title-font);
+            font-size: 8.5pt; 
+            color: var(--text-light); 
+            margin-bottom: 3mm; 
+            padding-left: 6mm;
+            letter-spacing: 0.5pt;
+        }
+        .performer-tag { 
+            font-family: var(--sans-font);
+            font-size: 8.5pt; 
+            color: var(--primary-color);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 1.5mm 3mm;
+            display: inline-block;
+            margin-bottom: 3.5mm;
+            margin-left: 6mm;
+            border-radius: 2px;
+            letter-spacing: 1.5pt;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .description { 
+            line-height: 2; /* 增加行高，提升閱讀舒適度 */
+            text-align: justify; 
+            font-size: 9.5pt; 
+            font-weight: 300; /* 使用較輕的字重呈現優雅感 */
+            color: #333; 
+            margin-left: 6mm;
+            letter-spacing: 0.8pt; /* 增加字元間距 */
+        }
+
+        /* --- 工作人員與頁尾 --- */
+        .staff-section {
+            margin-top: auto;
+            padding-top: 6mm;
+            position: relative;
+            z-index: 2;
+        }
+        .staff-section h4 {
+            font-size: 11pt;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 5mm;
+            letter-spacing: 4pt;
+        }
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4mm;
+            text-align: center;
+            font-family: var(--sans-font);
+            font-size: 9pt;
+        }
+        .staff-item strong { 
+            display: block;
+            color: var(--primary-color); 
+            font-size: 8pt;
+            margin-bottom: 1mm;
+            letter-spacing: 2pt;
+        }
+        .staff-item span { color: var(--text-light); }
+
+        .closing-footer { text-align: center; margin-top: auto; padding-bottom: 5mm; position: relative; z-index: 2; }
+        .closing-title { font-size: 14pt; color: var(--accent-color); letter-spacing: 8pt; margin-bottom: 3mm; }
+        .closing-sub { font-size: 9pt; color: var(--text-light); letter-spacing: 2pt; margin-bottom: 5mm;}
+        .copyright { font-family: var(--sans-font); font-size: 8pt; color: #aaa; letter-spacing: 2pt; }
+
+        .page-number { 
+            position: absolute; 
+            bottom: 12mm; 
+            width: 100%; 
+            left: 0; 
+            text-align: center; 
+            font-size: 8pt; 
+            color: var(--accent-color); 
+            letter-spacing: 2pt; 
+            font-family: var(--eng-title-font);
+        }
+
+        /* 列印模式設定 */
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: white; padding: 0; }
+            .page { margin: 0; box-shadow: none; }
+            .cover { background-color: var(--paper-bg) !important; color: var(--primary-color) !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page cover">
+        <p class="subtitle">2026</p>
+        <h1>醫聲室內樂音樂會</h1>
+        <div class="cover-divider"></div>
+        <div class="concert-info">
+            <div>時間:2026年04月18日 (六) 19:00</div>
+            <div>地點:文化大學大夏館 B1表演廳</div>
+            <div class="venue">地址:台北市建國南路二段231號</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <h2>節目順序</h2>
+        <div class="program-list">
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>五夜琴聲｜韋瓦第《B小調四把小提琴協奏曲》</h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">鄭育芝 趙梓辰 鄭子成 謝允涵 陳婉玲</div>
+                </div>
+                <div class="program-eng-sub">Vivaldi concerto in b minor for 4 violin</div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>愛管弦事｜弗朗茨·安東·霍夫邁斯特 長笛與中提琴二重奏第一和第三樂章</h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">企鵝姐姐 彭建翔</div>
+                </div>
+                <div class="program-eng-sub">Franz Anton Hoffmeister Duo Concertante in G Major</div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>Vijudra Trio｜孟德爾頌D小調第一號鋼琴三重奏 作品49:第一樂章:相當快且激動地點</h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">謝依霖 邱心瑜 邱淳欣</div>
+                </div>
+                <div class="program-eng-sub">Mendelssohn Piano Trio No. 1 in D Minor, Op. 49</div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>老大不小三重奏｜弗里德里希·赫爾曼 :
+為三把小提琴所作的d小調隨想曲作品 2</h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">張智欽 張嗣翔 陳律臻</div>
+                </div>
+                <div class="program-eng-sub">Hermann – Capriccio op. 2 for 3 Violins</div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>Summer三重奏｜蕭邦G小調第一號鋼琴三重奏作品8 
+第一樂章：火熱的快板 </h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">趙婷 簡穎瑄 鄭涵之</div>
+                </div>
+                <div class="program-eng-sub">Chopin Piano Trio Op.8 1st mov. Allegro con fuoco</div>
+            </div>
+
+            <div class="intermission">中場休息</div>
+
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>Viva Viola｜法蘭克·布里吉 為兩把中提琴而作的哀歌</h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">陳思涵 吳育弘</div>
+                </div>
+                <div class="program-eng-sub">Frank Bridge Lament for two violas</div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>莫札特G小調第一號鋼琴四重奏, K. 478 
+第一樂章：熱情的快板</h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">陳至行 企鵝姐姐 李昇平 蔡明涵</div>
+                </div>
+                <div class="program-eng-sub">Mozart Piano Quartet K.478 1st mov. (Allegro)</div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>大小鋼好｜舒伯特鋼琴三重奏 D.929 作品100
+第二樂章
+</h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">歐良修 何美萱 陳婉玲</div>
+                </div>
+                <div class="program-eng-sub">Schubert Piano Trio D.929 2nd mov.</div>
+            </div>
+
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>三聲有幸｜布魯赫：單簧管、中提琴與鋼琴八首小品 作品83 第2、6、7首</h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">王盈琇 吳育弘 林聖縈</div>
+                </div>
+                <div class="program-eng-sub">Max Bruch - 8 Pieces for Clarinet, Viola and Piano, Op. 83</div>
+            </div>
+            
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>Nuevo Trio｜阿斯托爾·皮亞佐拉：《遺忘》
+給長笛，低音管和鋼琴
+</h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">彭建翔 江珮琦 陳婉玲</div>
+                </div>
+                <div class="program-eng-sub">Astor Piazzolla - Oblivion for Flute, Bassoon and Piano</div>
+            </div>
+            
+            <div class="program-item">
+                <div class="program-row">
+                    <div class="program-title-group"><h4>敘舊四重奏｜貝多芬弦樂四重奏Op. 135第三和四樂章
+</h4></div>
+                    <div class="leader"></div>
+                    <div class="performer-name-only">高錦弘 呂煦宗 蔡德慧 蔡秀婉</div>
+                </div>
+                <div class="program-eng-sub">Beethoven – String Quartet Op.135 3rd & 4th mov</div>
+            </div>
+        </div>
+        <div class="page-number">I</div>
+    </div>
+
+    <div class="page">
+        <h2>樂曲介紹</h2>
+        <div class="content-section">
+            <h3>五夜琴聲｜韋瓦第《B小調四把小提琴協奏曲》</h3>
+            <div class="eng-title">Vivaldi concerto in b minor for 4 violin</div>
+            <div class="performer-tag">小提琴：鄭育芝、趙梓辰、鄭子成、謝允涵 ｜ 鋼琴：陳婉玲</div>
+            <div class="description">義大利作曲家韋瓦第(1678-1741)《B小調四把小提琴協奏曲》，收錄於其著名的協奏曲集《和諧的靈感》中。此曲是巴洛克時期最具代表性的協奏曲之一，具有巴洛克時期小提琴音樂的輝煌與技巧；也有巴洛克音樂的對位與織度。更有巴洛克時期「大協奏曲」的精髓。今天室內樂是演奏四把獨奏小提琴與鋼琴合作的版本，將呈現出另一種聲響，也考驗演奏者的技巧與默契。
+本曲結構採用經典的「快-慢-快」三樂章形式，三樂章分別為：
+第一樂章 ：快板，四把小提琴接續演奏主題旋律，運用清晰的十六分音符，彼此競奏與對答，層次分明。
+第二樂章：慢板，抒發細膩情感，旋律優美抒情。
+第三樂章：快板，四把小提琴競奏，展現出高度的技巧性與華麗感，樂曲在緊湊且愉悅的節奏中結束。</div>
+        </div>
+        <div class="content-section">
+            <h3>愛管弦事｜弗朗茨·安東·霍夫邁斯特 長笛與中提琴二重奏第一和第三樂章</h3>
+            <div class="eng-title">Franz Anton Hoffmeister Duo Concertante in G Major 1st & 3rd mov.</div>
+            <div class="performer-tag">中提琴：企鵝姐姐 ｜ 長笛：彭建翔</div>
+            <div class="description">霍夫邁斯特（1754–1812）是德國作曲家、音樂出版商，14歲到維也納學習法律，後來決定從事音樂工作。除了自己的作品，也為當時許多重要的作曲家，如：海頓、莫札特、貝多芬等，出版作品。由他出版的莫札特第20號弦樂四重奏就別名「Hoffmeister」（也有資料顯示是為他而作）。
+
+霍夫邁斯特這部「為長笛與中提琴編寫的二重奏」作品共有三首，本次演出為第一首G大調的第一和第三樂章。
+
+此作品展現了古典主義時期的典雅風格，注重兩樂器之間的對話、旋律交替與和聲配合，具有輕快、優雅的室內樂特色。旋律線流暢，長笛明亮與中提琴低沉溫暖的音色形成對比與平衡。</div>
+        </div>
+        <div class="content-section">
+            <h3>Vijudra Trio｜孟德爾頌D小調第一號鋼琴三重奏 作品49:第一樂章:相當快且激動地點</h3>
+            <div class="eng-title">Mendelssohn Piano Trio No. 1 in D Minor, Op. 49: 1st mov.</div>
+            <div class="performer-tag">小提琴：謝依霖 ｜ 大提琴：邱心瑜 ｜ 鋼琴：邱淳欣</div>
+            <div class="description">這首鋼琴三重奏是孟德爾頌最著名的室內樂作品之一。完成於1839年，譜曲過程還有好朋友舒曼的鼓勵，第一樂章中，三個樂器彼此傾聽、互相回應，像是一段彼此溫柔而真誠的情感對話。</div>
+        </div>
+        <div class="page-number">II</div>
+    </div>
+
+    <div class="page">
+        <h2>樂曲介紹</h2>
+        <div class="content-section">
+            <h3>老大不小三重奏｜弗里德里希·赫爾曼:為三把小提琴所作的d小調隨想曲作品 2</h3>
+            <div class="eng-title">Hermann – Capriccio op. 2 for 3 Violins</div>
+            <div class="performer-tag">小提琴：張智欽、張嗣翔、陳律臻</div>
+            <div class="description">德國作曲家 Hermann是孟德爾頌的學生，這首小提琴三重奏於1845年在萊比錫音樂院首演 ，由Hermann本人與他兩位學生共同演出，而第三部則是由他自己擔綱。
+隨想曲 Capriccio源自義大利語，意為隨性的、奇想 的、曲風自由、難以預測。本曲從慢板序曲開始，在短短的序曲結束之後隨即進入快板，主題由瘋狂與抒情的旋律交錯，最後華麗燦爛地結束。
+</div>
+        </div>
+        <div class="content-section">
+            <h3>Summer三重奏｜蕭邦G小調第一號鋼琴三重奏作品8 第一樂章：火熱的快板 </h3>
+            <div class="eng-title">Chopin Piano Trio Op.8 1st mov Allegro con fuoco</div>
+            <div class="performer-tag">小提琴：趙婷 ｜ 大提琴：簡穎瑄 ｜ 鋼琴：鄭涵之</div>
+            <div class="description">這部作品展現了少年蕭邦（時年約18歲）在鋼琴詩人之外，對室內樂結構的初步探索與野心。這個樂章遵循傳統的奏鳴曲式，樂曲以強而有力的G小調和弦展開，第一主題帶有一種憂鬱卻果敢的波蘭民族氣質。鋼琴與弦樂器之間展開了密集的對話。蕭邦利用大量的琶音與快速音群，為樂曲營造出波瀾壯闊的情感。第二主題則轉向較為溫婉的曲調，展現了蕭邦標誌性的歌唱性旋律，小提琴與大提琴在此處有更多細膩的情感交織。發展部中，音樂的情緒波動劇烈，充滿了不安的張力，最終在再現部回到主題，並以一連串充滿能量的終結句收尾。這部早期作品在第一樂章展現了蕭邦在掌握古典形式的同時，如何將浪漫主義的熱情注入嚴謹的框架中。它是研究蕭邦如何處理非鋼琴獨奏作品的重要基石。
+</div>
+        </div>
+        <div class="content-section">
+            <h3>Viva Viola｜法蘭克·布里吉 為兩把中提琴而作的哀歌</h3>
+            <div class="eng-title">Frank Bridge Lament for two violas</div>
+            <div class="performer-tag">中提琴：陳思涵、吳育弘</div>
+            <div class="description">英國作曲家 Frank Bridge（1879–1941） 本身就是一位出色的中提琴家，因此他對中提琴音色的掌握與理解格外深刻，而這首作品正是其最具代表性的作品之一。
+「Lament」（哀歌）在西方音樂傳統中，常用來表達悲傷、追思與內心沉靜而深刻的情感。《為兩把中提琴而作的哀歌》是一首單樂章的抒情短曲，以富於歌唱性的長旋律彼此交織，並運用了大量半音音階與帶有張力的不和諧和聲；綿長的低音與如波浪般起伏的樂句，使整首樂曲具有強烈的敘事感與戲劇張力。兩把中提琴彷彿低沉而細膩的人聲對話，兩個聲部時而傾訴、時而回應，彷彿彼此安慰與陪伴，使整首作品籠罩在一種溫柔而深沉的哀傷之中。</div>
+        </div>
+        <div class="page-number">III</div>
+    </div>
+
+    <div class="page">
+        <h2>樂曲介紹</h2>
+        <div class="content-section">
+            <h3>莫札特G小調第一號鋼琴四重奏, K. 478 第一樂章：熱情的快板</h3>
+            <div class="eng-title">Mozart Piano Quartet K.478 1st mov (Allegro)</div>
+            <div class="performer-tag">小提琴：陳至行 ｜ 中提琴：企鵝姐姐 ｜ 大提琴：李昇平 ｜ 鋼琴：蔡明涵</div>
+            <div class="description">大家印象中的莫札特，可能大多是明亮、輕快、像天使一樣無憂無慮的，但這首 G 小調的第一樂章，卻會讓你看到一位「很酷、很激昂」的莫札特。
+這個樂章一開始，沒有任何囉唆的前奏，鋼琴與三把弦樂器就齊心協力，用強而有力的「齊奏」炸開場面。那個威嚴的主題就像命運在敲門一樣（雖然貝多芬那時還沒寫命運交響曲），瞬間就把大家抓進緊張的劇情裡。
+有個有趣的小八卦是：這首曲子在當年其實被出版商「嫌棄」了。當時的出版商希望莫札特寫一點簡單、適合貴族在家隨手彈彈的沙龍音樂，結果莫札特一不小心寫得太深奧、太華麗，尤其是這個樂章裡鋼琴的技巧非常輝煌，簡直像是一首縮小版的「鋼琴協奏曲」，讓當時的業餘玩家大喊吃不消！
+在第一樂章裡，請大家欣賞鋼琴與弦樂之間精彩的「攻防戰」。它們時而對抗，時而像是老朋友般親密對話，在激昂的 G 小調與溫柔的大調之間不斷切換。這是四位演奏者默契的極致考驗。</div>
+        </div>
+        <div class="content-section">
+            <h3>大小鋼好｜舒伯特鋼琴三重奏 D.929 作品100 第二樂章</h3>
+            <div class="eng-title">Schubert Piano Trio D.929 2nd mov.</div>
+            <div class="performer-tag">小提琴：歐良修 ｜ 大提琴：何美萱 ｜ 鋼琴：陳婉玲</div>
+            <div class="description">這首是舒伯特過世前一年所創作對生命深刻領悟的作品，第二樂章主題取自於舒伯特「瑞典歌曲」，其憂鬱宿命的氛圍令人印象深刻。樂曲為三段式，由大提琴、鋼琴、小提琴先後演奏主題。從一聽到開頭鋼琴的節奏型伴奏就決定選這首了！我們覺得很像鐘錶廣告配樂，大家可以聆聽時想像配上一段百年手工鐘錶行的畫面及廣告詞，跟著大小鋼好一起進入舒伯特的精神世界。
+</div>
+        </div>
+        <div class="content-section">
+            <h3>三聲有幸｜布魯赫：單簧管、中提琴與鋼琴八首小品 作品83 第2、6、7首</h3>
+            <div class="eng-title">Max Bruch - 8 Pieces for Clarinet, Viola and Piano, Op. 83 II, VI, VII</div>
+            <div class="performer-tag">豎笛：王盈琇 ｜ 中提琴：吳育弘 ｜ 鋼琴：林聖縈</div>
+            <div class="description">德國作曲家Max Bruch (1838–1920) 以旋律優美、情感濃厚的浪漫主義音樂著稱。這首作品完成於1910年，是他晚年72歲的室內樂代表作之一，原為他的單簧管演奏家兒子Felix Bruch所寫。作品巧妙結合單簧管溫暖圓潤的音色與中提琴深沉柔和的聲響，在鋼琴細緻的和聲襯托下，呈現親密而富歌唱性的室內樂對話。本次演出的第2、6、7首各具不同性格。第二首節奏流暢而富動感，單簧管與中提琴交替呈現旋律，展現輕快而優雅的氣息。第六首夜之歌 (Nachtgesang) 氣氛靜謐深沉，旋律悠長而富詩意，是整套作品中最富沉思色彩及著名的一曲。第七首重新回到明亮活潑的情緒，節奏輕巧靈動，帶有舞蹈般的律動感。這些小品雖篇幅精緻，卻展現布魯赫晚年溫暖、抒情而成熟的音樂風格。</div>
+        </div>
+        <div class="page-number">IV</div>
+    </div>
+
+    <div class="page">
+        <h2>樂曲介紹</h2>
+        <div class="content-section">
+            <h3>Nuevo Trio｜阿斯托爾·皮亞佐拉：《遺忘》給長笛，低音管和鋼琴</h3>
+            <div class="eng-title">Astor Piazzolla - Oblivion for Flute, Bassoon and Piano</div>
+            <div class="performer-tag">長笛：彭建翔 ｜ 低音管：江珮琦 ｜ 鋼琴：陳婉玲</div>
+            <div class="description">阿根廷作曲家皮亞佐拉（Astor Piazzolla, 1921–1992）是「新探戈」（Tango Nuevo）的鼻祖。他將古典音樂的嚴謹與爵士樂的即興注入傳統探戈，成功將此類民間舞曲昇華為能進入正式音樂廳表演的藝術形式。
+
+ 《遺忘》創作於1982年，原為義大利電影《亨利四世》的配樂，是皮亞佐拉最著名的抒情傑作之一。曲名「Oblivion」象徵著一種帶著鄉愁、平靜且沈思的忘我境界，優美的旋律已被廣泛改編為各種室內樂組合，今晚是由長笛、低音管及鋼琴的組合來詮釋這首曲子。
+</div>
+        </div>
+        <div class="content-section">
+            <h3>敘舊四重奏｜貝多芬弦樂四重奏Op. 135第三和四樂章</h3>
+            <div class="eng-title">Ludwig van Beethoven String Quartet No. 16 in F major, Op. 135</div>
+            <div class="performer-tag">小提琴：高錦弘、呂煦宗 ｜ 中提琴：蔡德慧 ｜ 大提琴：蔡秀婉</div>
+            <div class="description">貝多芬《弦樂四重奏第16號，F大調，Op.135》於1826年十月完成（五個月後於1827/3/26過世），1828年首演。除了之後為Op.130重寫的第四樂章之外，此曲是整個弦樂四重奏創作的終點與總結，和前幾首「晚期四重奏」突破傳統形式和深沉神秘的內涵不同，這首格外精練簡潔和明朗清澈，回到傳統四樂章的形式，且和同時期重寫的Op.130第四樂章一樣，具有古典時期的曲風。全曲雖然相對篇幅較短，仍然展現了大格局和豐富的內涵，有內歛深廣也有狂野奔放的時候、且不乏慧黠的幽默感。
+我們將演奏第三與第四樂章，簡介如下：
+III. Lento assai, cantante e tranquillo（降Ｄ大調）
+篇幅很短，時間卻彷彿被拉長變慢了，又分為三個段落，首先從極度安靜的氛圍中，緩緩展開如歌的詠唱，又如宗教性虔誠的祈禱，第二段轉為升Ｃ小調，像是進入內在的探求、誠摯的告白。這兩段有許多如髮夾般的漸強漸弱記號，漸強之後常緊接著弱音記號，如同情緒與呼吸起伏的控制閥，營造了阻滯壓抑如同煞車作用的效果，和Op. 130著名的Cavatina樂章有共同之處（貝多芬在其中寫下Beklemmt-壓抑-這個字），情緒從開始謹慎小心地試探，逐漸敞開而趨於激昂地抒發，再回歸平靜，進入最後一段，回到最初的降Ｄ大調，順暢平穩地往前行，如同平和地接納一切，平靜地結束。這個樂章兼具優美與張力，且有深廣的意境，也被單獨拿出來作為弦樂團的音樂會曲目。
+IV. Finale: Grave, ma non troppo tratto — Allegro
+貝多芬罕見地給這個樂章標題「艱難的決定」，並且寫下了帶有哲學意味自問自答的文字：Muss es sein?（一定要這樣嗎？）Es muss sein!（一定要這樣！）。可以說是全曲精神核心，分為兩部分。一、Ｆ小調慢板導言（Grave）：也就是提問的部分，沈重的猶疑，尖銳的不諧合音反映了極大的不安。二、Ｆ大調的快板主段（Allegro）：音樂突然轉為明亮果斷、節奏堅定，像下定決心向前，清楚表達了「一定要這樣」，勇往直前！可以這樣理解：前半是人生的遲疑與疑問，後半是對命運的肯定回應；不是悲壯的抗爭，而是明快、堅定而且幽默的接受。有學者說，如果 Op.131 是形而上的宇宙，那 Op.135 是回到人間的一句：「我明白了。」</div>
+        </div>
+
+        <div class="staff-section">
+            <h4>— STAFF —</h4>
+            <div class="staff-grid">
+                <div class="staff-item"><strong>行政總監</strong> <span>陳小明</span></div>
+                <div class="staff-item"><strong>舞台監督</strong> <span>王大同</span></div>
+                <div class="staff-item"><strong>錄音工程</strong> <span>李美玲</span></div>
+                <div class="staff-item"><strong>平面設計</strong> <span>趙家豪</span></div>
+                <div class="staff-item"><strong>現場招待</strong> <span>醫聲志工團</span></div>
+                <div class="staff-item"><strong>影像紀錄</strong> <span>攝影工作室</span></div>
+            </div>
+        </div>
+
+        <div class="closing-footer">
+            <div class="closing-title">感謝聆聽</div>
+            <div class="closing-sub">感謝今晚所有參與的演出者與觀眾</div>
+            <div class="copyright">© 2026 MEDICAL VOICE CHAMBER CONCERT</div>
+        </div>
+        <div class="page-number">V</div>
+    </div>
+
+</body>
+</html>
