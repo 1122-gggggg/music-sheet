@@ -12,23 +12,21 @@
             --primary-color: #12213b;
             --accent-color: #d4af37;
             --text-color: #2c2c2c;
-            --text-light: #666666;
+            --text-light: #777777;
             --paper-bg: #fcfaf6;
             --a4-width: 210mm;
             --a4-height: 297mm;
-            
-            /* 更新字體堆疊：英文優先使用優雅的 Cormorant Garamond，中文使用 Noto Serif TC */
             --serif-font: 'Cormorant Garamond', 'Noto Serif TC', 'PMingLiU', serif;
             --sans-font: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             --eng-title-font: 'Cinzel', serif;
         }
 
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        
+
         body {
-            background-color: #e0e0e0;
+            background: linear-gradient(160deg, #c8c8c8 0%, #e4e4e4 50%, #c8c8c8 100%);
             margin: 0;
-            padding: 40px 0;
+            padding: 48px 0;
             font-family: var(--serif-font);
             font-weight: 400;
             color: var(--text-color);
@@ -42,34 +40,62 @@
             width: var(--a4-width);
             height: var(--a4-height);
             position: relative;
-            padding: 20mm 25mm 25mm 25mm; 
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 18mm 22mm 22mm 22mm;
+            margin-bottom: 36px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.22), 0 4px 12px rgba(0,0,0,0.1);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             break-after: page;
         }
 
+        /* 細邊框 */
         .page:not(.cover)::before {
             content: "";
             position: absolute;
-            top: 12mm; left: 12mm; right: 12mm; bottom: 12mm;
-            border: 0.5pt solid var(--accent-color);
-            opacity: 0.4;
+            top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 0.4pt solid rgba(212, 175, 55, 0.45);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 四角裝飾 */
+        .page:not(.cover)::after {
+            content: "";
+            position: absolute;
+            top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            background:
+                linear-gradient(var(--accent-color), var(--accent-color)) top    left  / 7mm 1.5pt no-repeat,
+                linear-gradient(var(--accent-color), var(--accent-color)) top    left  / 1.5pt 7mm no-repeat,
+                linear-gradient(var(--accent-color), var(--accent-color)) top    right / 7mm 1.5pt no-repeat,
+                linear-gradient(var(--accent-color), var(--accent-color)) top    right / 1.5pt 7mm no-repeat,
+                linear-gradient(var(--accent-color), var(--accent-color)) bottom left  / 7mm 1.5pt no-repeat,
+                linear-gradient(var(--accent-color), var(--accent-color)) bottom left  / 1.5pt 7mm no-repeat,
+                linear-gradient(var(--accent-color), var(--accent-color)) bottom right / 7mm 1.5pt no-repeat,
+                linear-gradient(var(--accent-color), var(--accent-color)) bottom right / 1.5pt 7mm no-repeat;
+            opacity: 0.75;
             pointer-events: none;
             z-index: 1;
         }
 
         h1, h2, h3, h4 { color: var(--primary-color); position: relative; z-index: 2; margin: 0; font-weight: 600; }
-        
-        h2 { 
-            font-size: 20pt; 
-            text-align: center; 
-            letter-spacing: 12pt; /* 加大中文大標題字距 */
-            margin-bottom: 10mm; 
-            padding-bottom: 4mm;
+
+        h2 {
+            font-size: 18pt;
+            text-align: center;
+            letter-spacing: 10pt;
+            margin-bottom: 8mm;
+            padding-bottom: 5mm;
             position: relative;
+        }
+        h2::before {
+            content: "✦";
+            display: block;
+            font-size: 8pt;
+            color: var(--accent-color);
+            letter-spacing: 0;
+            margin-bottom: 3mm;
+            opacity: 0.75;
         }
         h2::after {
             content: "";
@@ -77,238 +103,269 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 40mm;
-            height: 1pt;
-            background-color: var(--accent-color);
+            width: 55mm;
+            height: 0.5pt;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
         }
 
-        /* --- 封面特化設計 --- */
-        .cover { 
+        /* --- 封面 --- */
+        .cover {
             background-color: var(--paper-bg);
             color: var(--primary-color);
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
         .cover::before {
             content: "";
             position: absolute;
-            top: 15mm; left: 15mm; right: 15mm; bottom: 15mm;
-            border: 1pt solid var(--accent-color);
+            top: 12mm; left: 12mm; right: 12mm; bottom: 12mm;
+            border: 0.8pt solid var(--accent-color);
             pointer-events: none;
+            z-index: 0;
         }
         .cover::after {
             content: "";
             position: absolute;
-            top: 17mm; left: 17mm; right: 17mm; bottom: 17mm;
-            border: 0.5pt solid rgba(212, 175, 55, 0.4);
+            top: 14.5mm; left: 14.5mm; right: 14.5mm; bottom: 14.5mm;
+            border: 0.4pt solid rgba(212, 175, 55, 0.35);
             pointer-events: none;
+            z-index: 0;
         }
-        .cover .subtitle { 
+        .cover .subtitle {
             font-family: var(--eng-title-font);
-            font-size: 13pt; 
-            color: var(--accent-color); 
-            letter-spacing: 6pt; 
-            margin-bottom: 8mm; 
+            font-size: 15pt;
+            color: var(--accent-color);
+            letter-spacing: 9pt;
+            margin-bottom: 5mm;
+            position: relative;
+            z-index: 2;
         }
-        .cover h1 { 
+        .cover h1 {
             font-family: 'Noto Serif TC', serif;
-            font-size: 36pt; 
+            font-size: 34pt;
             color: var(--primary-color);
-            letter-spacing: 12pt; 
-            font-weight: 600; 
-            margin-bottom: 8mm;
+            letter-spacing: 10pt;
+            font-weight: 600;
+            line-height: 1.4;
+            position: relative;
+            z-index: 2;
         }
-        .cover-divider { 
-            width: 15mm; 
-            height: 1.5pt; 
-            background: var(--accent-color); 
-            margin: 0 auto 12mm auto; 
+        .cover-divider {
+            width: 24mm;
+            height: 1pt;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+            margin: 9mm auto 11mm auto;
+            position: relative;
+            z-index: 2;
         }
-        .concert-info { 
-            font-size: 13pt; 
-            line-height: 2; 
-            color: var(--primary-color); 
+        .concert-info {
+            font-size: 12pt;
+            line-height: 2.3;
+            color: var(--primary-color);
             letter-spacing: 2pt;
+            position: relative;
+            z-index: 2;
         }
         .concert-info .venue {
             font-family: var(--sans-font);
-            font-size: 10pt;
+            font-size: 9.5pt;
             color: var(--text-light);
             margin-top: 2mm;
             letter-spacing: 1.5pt;
         }
 
-        /* --- 曲目表排版 --- */
+        /* --- 曲目表 --- */
         .program-list { width: 100%; position: relative; z-index: 2; margin-top: 2mm; }
-        .program-item { margin-bottom: 4.5mm; width: 100%; }
-        
+
+        .program-item {
+            margin-bottom: 0;
+            width: 100%;
+            padding: 3.5mm 0;
+            border-bottom: 0.4pt solid rgba(212, 175, 55, 0.18);
+        }
+        .program-item:last-of-type { border-bottom: none; }
+
         .program-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             width: 100%;
-            margin-bottom: 1mm;
+            margin-bottom: 0.8mm;
         }
 
-        .program-title-group { text-align: left; }
-        
+        .program-title-group { text-align: left; flex: 1 1 auto; min-width: 0; }
+
         .program-title-group h4 {
-            font-size: 10.5pt;
+            font-size: 10pt;
             margin: 0;
-            display: inline-block;
-            letter-spacing: 1pt;
+            letter-spacing: 0.6pt;
             font-weight: 600;
+            line-height: 1.5;
         }
-        
+
         .leader {
-            flex-grow: 1;
-            border-bottom: 1.2pt dotted rgba(212, 175, 55, 0.6);
-            margin: 0 4mm;
+            flex: 0 1 auto;
+            border-bottom: 1pt dotted rgba(212, 175, 55, 0.5);
+            margin: 0 3mm;
+            min-width: 4mm;
             position: relative;
             top: -3px;
         }
 
         .performer-name-only {
             font-family: var(--sans-font);
-            font-size: 8.5pt;
-            color: var(--primary-color);
-            font-weight: 500;
-            text-align: right; 
-            flex-shrink: 0;
+            font-size: 7.5pt;
+            color: var(--text-light);
+            font-weight: 400;
+            text-align: right;
+            flex: 0 0 auto;
             white-space: nowrap;
         }
 
         .program-eng-sub {
             font-family: var(--eng-title-font);
-            font-size: 7.5pt;
+            font-size: 7pt;
             color: var(--text-light);
             display: block;
             margin-top: 0.5mm;
-            letter-spacing: 0.5pt;
+            letter-spacing: 0.3pt;
+            opacity: 0.8;
         }
 
-        .intermission { 
-            text-align: center; 
-            margin: 6mm 0; 
-            padding: 2mm; 
-            font-family: var(--sans-font); 
-            color: var(--accent-color); 
-            letter-spacing: 12pt; 
-            font-size: 10pt; 
+        .intermission {
+            text-align: center;
+            margin: 0;
+            padding: 3.5mm 0;
+            font-family: var(--sans-font);
+            color: var(--accent-color);
+            letter-spacing: 10pt;
+            font-size: 9pt;
             position: relative;
             z-index: 2;
+            border-top: 0.4pt solid rgba(212,175,55,0.25);
+            border-bottom: 0.4pt solid rgba(212,175,55,0.25);
         }
         .intermission::before, .intermission::after {
             content: "✦";
-            font-size: 8pt;
-            margin: 0 4mm;
+            font-size: 7pt;
+            margin: 0 5mm;
             color: var(--accent-color);
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
-        /* --- 樂曲解說排版 (強調呼吸感) --- */
-        .content-section { 
-            margin-bottom: 12mm; /* 增加每個樂曲之間的距離 */
-            position: relative; 
-            z-index: 2; 
+        /* --- 樂曲解說 --- */
+        .content-section {
+            margin-bottom: 8.5mm;
+            position: relative;
+            z-index: 2;
         }
-        .content-section h3 { 
-            font-size: 12pt; 
-            margin-bottom: 2mm; 
-            letter-spacing: 1.5pt;
+        .content-section h3 {
+            font-size: 11pt;
+            margin-bottom: 2mm;
+            letter-spacing: 0.8pt;
+            line-height: 1.6;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
         }
-        .content-section h3::before { 
-            content: ""; 
+        .content-section h3::before {
+            content: "";
             display: inline-block;
-            width: 3mm;
-            height: 3mm;
+            width: 2.5mm;
+            height: 2.5mm;
             background-color: var(--accent-color);
             margin-right: 3mm;
+            margin-top: 2.5mm;
             transform: rotate(45deg);
+            flex-shrink: 0;
         }
-        .eng-title { 
+        .eng-title {
             font-family: var(--eng-title-font);
-            font-size: 8.5pt; 
-            color: var(--text-light); 
-            margin-bottom: 3mm; 
-            padding-left: 6mm;
-            letter-spacing: 0.5pt;
+            font-size: 7.5pt;
+            color: var(--text-light);
+            margin-bottom: 2.5mm;
+            padding-left: 5.5mm;
+            letter-spacing: 0.3pt;
+            opacity: 0.85;
         }
-        .performer-tag { 
+        .performer-tag {
             font-family: var(--sans-font);
-            font-size: 8.5pt; 
+            font-size: 7.5pt;
             color: var(--primary-color);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            padding: 1.5mm 3mm;
+            border-left: 2pt solid var(--accent-color);
+            padding: 1mm 3mm;
             display: inline-block;
-            margin-bottom: 3.5mm;
-            margin-left: 6mm;
-            border-radius: 2px;
-            letter-spacing: 1.5pt;
-            background-color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 3mm;
+            margin-left: 5.5mm;
+            letter-spacing: 1pt;
+            background-color: rgba(212, 175, 55, 0.05);
         }
-        .description { 
-            line-height: 2; /* 增加行高，提升閱讀舒適度 */
-            text-align: justify; 
-            font-size: 9.5pt; 
-            font-weight: 300; /* 使用較輕的字重呈現優雅感 */
-            color: #333; 
-            margin-left: 6mm;
-            letter-spacing: 0.8pt; /* 增加字元間距 */
+        .description {
+            line-height: 1.95;
+            text-align: justify;
+            font-size: 9pt;
+            font-weight: 300;
+            color: #383838;
+            margin-left: 5.5mm;
+            letter-spacing: 0.5pt;
+            text-indent: 2em;
         }
 
         /* --- 工作人員與頁尾 --- */
         .staff-section {
             margin-top: auto;
-            padding-top: 6mm;
+            padding-top: 5mm;
+            border-top: 0.5pt solid rgba(212, 175, 55, 0.3);
             position: relative;
             z-index: 2;
         }
         .staff-section h4 {
-            font-size: 11pt;
+            font-size: 9.5pt;
             color: var(--accent-color);
             text-align: center;
-            margin-bottom: 5mm;
-            letter-spacing: 4pt;
+            margin-bottom: 4mm;
+            letter-spacing: 5pt;
         }
         .staff-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 4mm;
+            gap: 3mm 6mm;
             text-align: center;
             font-family: var(--sans-font);
-            font-size: 9pt;
+            font-size: 8.5pt;
         }
-        .staff-item strong { 
+        .staff-item strong {
             display: block;
-            color: var(--primary-color); 
-            font-size: 8pt;
-            margin-bottom: 1mm;
+            color: var(--primary-color);
+            font-size: 7.5pt;
+            margin-bottom: 0.5mm;
             letter-spacing: 2pt;
         }
         .staff-item span { color: var(--text-light); }
 
-        .closing-footer { text-align: center; margin-top: auto; padding-bottom: 5mm; position: relative; z-index: 2; }
-        .closing-title { font-size: 14pt; color: var(--accent-color); letter-spacing: 8pt; margin-bottom: 3mm; }
-        .closing-sub { font-size: 9pt; color: var(--text-light); letter-spacing: 2pt; margin-bottom: 5mm;}
-        .copyright { font-family: var(--sans-font); font-size: 8pt; color: #aaa; letter-spacing: 2pt; }
+        .closing-footer {
+            text-align: center;
+            margin-top: 5mm;
+            padding-bottom: 4mm;
+            position: relative;
+            z-index: 2;
+        }
+        .closing-title { font-size: 13pt; color: var(--accent-color); letter-spacing: 8pt; margin-bottom: 2.5mm; }
+        .closing-sub { font-size: 8.5pt; color: var(--text-light); letter-spacing: 2pt; margin-bottom: 4mm; }
+        .copyright { font-family: var(--sans-font); font-size: 7.5pt; color: #bbb; letter-spacing: 2pt; }
 
-        .page-number { 
-            position: absolute; 
-            bottom: 12mm; 
-            width: 100%; 
-            left: 0; 
-            text-align: center; 
-            font-size: 8pt; 
-            color: var(--accent-color); 
-            letter-spacing: 2pt; 
+        .page-number {
+            position: absolute;
+            bottom: 11mm;
+            width: 100%;
+            left: 0;
+            text-align: center;
+            font-size: 7.5pt;
+            color: rgba(212, 175, 55, 0.7);
+            letter-spacing: 3pt;
             font-family: var(--eng-title-font);
         }
 
-        /* 列印模式設定 */
         @media print {
             @page { size: A4; margin: 0; }
             body { background: white; padding: 0; }
