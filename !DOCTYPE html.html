@@ -167,8 +167,8 @@
 
         .cover .subtitle {
             font-family: var(--eng-title-font);
-            font-size: 15pt;
-            color: var(--accent-color);
+            font-size: 22pt;
+            color: #8b6a10;
             letter-spacing: 9pt;
             margin-bottom: 5mm;
             position: relative;
@@ -196,7 +196,7 @@
         }
 
         .concert-info {
-            font-size: 12pt;
+            font-size: 14pt;
             line-height: 2.3;
             color: var(--primary-color);
             letter-spacing: 2pt;
@@ -206,7 +206,7 @@
 
         .concert-info .venue {
             font-family: var(--sans-font);
-            font-size: 9.5pt;
+            font-size: 12pt;
             color: var(--text-light);
             margin-top: 2mm;
             letter-spacing: 1.5pt;
@@ -275,11 +275,10 @@
         .program-eng-sub {
             font-family: var(--eng-title-font);
             font-size: 7pt;
-            color: var(--text-light);
+            color: #444444;
             display: block;
             margin-top: 0.5mm;
             letter-spacing: 0.3pt;
-            opacity: 0.8;
         }
 
         .intermission {
@@ -336,11 +335,10 @@
         .eng-title {
             font-family: var(--eng-title-font);
             font-size: 7.5pt;
-            color: var(--text-light);
+            color: #555555;
             margin-bottom: 2.5mm;
             padding-left: 5.5mm;
             letter-spacing: 0.3pt;
-            opacity: 0.85;
         }
 
         .performer-tag {
@@ -360,11 +358,31 @@
             line-height: 1.95;
             text-align: justify;
             font-size: 9pt;
-            font-weight: 300;
-            color: #383838;
+            font-weight: 400;
+            color: #1e1e1e;
             margin-left: 5.5mm;
             letter-spacing: 0.5pt;
             text-indent: 2em;
+        }
+
+        .description p {
+            margin: 0 0 1.5mm 0;
+            text-indent: 2em;
+        }
+
+        .description p:first-child {
+            margin-top: 0;
+        }
+
+        .movement-label {
+            font-family: var(--eng-title-font);
+            font-size: 8.5pt;
+            color: var(--primary-color);
+            font-weight: 600;
+            display: block;
+            margin: 2.5mm 0 0.8mm 0;
+            text-indent: 0;
+            letter-spacing: 0.3pt;
         }
 
         /* --- 工作人員與頁尾 --- */
@@ -446,6 +464,35 @@
             font-family: var(--eng-title-font);
         }
 
+        /* --- 最後一頁縮緊間距 --- */
+        .page-last {
+            padding-top: 14mm;
+            padding-bottom: 16mm;
+        }
+
+        .page-last h2 {
+            margin-bottom: 5mm;
+            padding-bottom: 3.5mm;
+        }
+
+        .page-last .content-section {
+            margin-bottom: 5mm;
+        }
+
+        .page-last .description {
+            line-height: 1.8;
+            font-size: 8.5pt;
+        }
+
+        .page-last .description p {
+            margin-bottom: 1mm;
+        }
+
+        .page-last .movement-label {
+            margin-top: 1.5mm;
+            margin-bottom: 0.5mm;
+        }
+
         @media print {
             @page {
                 size: A4;
@@ -484,7 +531,7 @@
     </div>
 
     <div class="page">
-        <h2>節目順序</h2>
+        <h2>節目表</h2>
         <div class="program-list">
             <div class="program-item">
                 <div class="program-row">
@@ -535,7 +582,7 @@
                 <div class="program-row">
                     <div class="program-title-group">
                         <h4>Summer三重奏｜蕭邦 : G小調第一號鋼琴三重奏 作品8
-                            第一樂章：火熱的快板 </h4>
+                            第一樂章 火熱的快板 </h4>
                     </div>
                     <div class="leader"></div>
                     <div class="performer-name-only">趙婷 簡穎瑄 鄭涵之</div>
@@ -559,7 +606,7 @@
             <div class="program-item">
                 <div class="program-row">
                     <div class="program-title-group">
-                        <h4>莫札特 : G小調第一號鋼琴四重奏 第一樂章：熱情的快板</h4>
+                        <h4>糖衣四重奏 | 莫札特 : G小調第一號鋼琴四重奏 第一樂章 熱情的快板</h4>
                     </div>
                     <div class="leader"></div>
                     <div class="performer-name-only">陳至行 企鵝姐姐 李昇平 蔡明涵</div>
@@ -643,7 +690,7 @@
                 此作品展現了古典主義時期的典雅風格，注重兩樂器之間的對話、旋律交替與和聲配合，具有輕快、優雅的室內樂特色。旋律線流暢，長笛明亮與中提琴低沉溫暖的音色形成對比與平衡。</div>
         </div>
         <div class="content-section">
-            <h3>Vijudra Trio｜孟德爾頌 : D小調第一號鋼琴三重奏 作品49:第一樂章 相當快且激動地點</h3>
+            <h3>Vijudra Trio｜孟德爾頌 : D小調第一號鋼琴三重奏 作品49 第一樂章:相當快且激動地</h3>
             <div class="eng-title">Mendelssohn Piano Trio No. 1 in D Minor, Op. 49: 1st mov.</div>
             <div class="performer-tag">小提琴：謝依霖 ｜ 大提琴：邱心瑜 ｜ 鋼琴：邱淳欣</div>
             <div class="description">
@@ -663,7 +710,7 @@
             </div>
         </div>
         <div class="content-section">
-            <h3>Summer三重奏｜蕭邦 : G小調第一號鋼琴三重奏作品8 第一樂章：火熱的快板 </h3>
+            <h3>Summer三重奏｜蕭邦 : G小調第一號鋼琴三重奏 作品8 第一樂章 : 火熱的快板 </h3>
             <div class="eng-title">Chopin Piano Trio Op.8 1st mov Allegro con fuoco</div>
             <div class="performer-tag">小提琴：趙婷 ｜ 大提琴：簡穎瑄 ｜ 鋼琴：鄭涵之</div>
             <div class="description">
@@ -684,7 +731,7 @@
     <div class="page">
         <h2>樂曲介紹</h2>
         <div class="content-section">
-            <h3>莫札特 : G小調第一號鋼琴四重奏, K. 478 第一樂章：熱情的快板</h3>
+            <h3>莫札特 : G小調第一號鋼琴四重奏, K. 478 第一樂章 熱情的快板</h3>
             <div class="eng-title">Mozart Piano Quartet K.478 1st mov (Allegro)</div>
             <div class="performer-tag">小提琴：陳至行 ｜ 中提琴：企鵝姐姐 ｜ 大提琴：李昇平 ｜ 鋼琴：蔡明涵</div>
             <div class="description">大家印象中的莫札特，可能大多是明亮、輕快、像天使一樣無憂無慮的，但這首 G 小調的第一樂章，卻會讓你看到一位「很酷、很激昂」的莫札特。
@@ -714,7 +761,7 @@
         <div class="page-number">IV</div>
     </div>
 
-    <div class="page">
+    <div class="page page-last">
         <h2>樂曲介紹</h2>
         <div class="content-section">
             <h3>Nuevo Trio｜阿斯托爾·皮亞佐拉：《遺忘》給長笛，低音管和鋼琴</h3>
@@ -731,34 +778,20 @@
             <div class="eng-title">Ludwig van Beethoven String Quartet No. 16 in F major, Op. 135</div>
             <div class="performer-tag">小提琴：高錦弘、呂煦宗 ｜ 中提琴：蔡德慧 ｜ 大提琴：蔡秀婉</div>
             <div class="description">
-                貝多芬《弦樂四重奏第16號，F大調，Op.135》於1826年十月完成（五個月後於1827/3/26過世），1828年首演。除了之後為Op.130重寫的第四樂章之外，此曲是整個弦樂四重奏創作的終點與總結，和前幾首「晚期四重奏」突破傳統形式和深沉神秘的內涵不同，這首格外精練簡潔和明朗清澈，回到傳統四樂章的形式，且和同時期重寫的Op.130第四樂章一樣，具有古典時期的曲風。全曲雖然相對篇幅較短，仍然展現了大格局和豐富的內涵，有內歛深廣也有狂野奔放的時候、且不乏慧黠的幽默感。
-                我們將演奏第三與第四樂章，簡介如下：
-                III. Lento assai, cantante e tranquillo（降Ｄ大調）
-                篇幅很短，時間卻彷彿被拉長變慢了，又分為三個段落，首先從極度安靜的氛圍中，緩緩展開如歌的詠唱，又如宗教性虔誠的祈禱，第二段轉為升Ｃ小調，像是進入內在的探求、誠摯的告白。這兩段有許多如髮夾般的漸強漸弱記號，漸強之後常緊接著弱音記號，如同情緒與呼吸起伏的控制閥，營造了阻滯壓抑如同煞車作用的效果，和Op.
-                130著名的Cavatina樂章有共同之處（貝多芬在其中寫下Beklemmt-壓抑-這個字），情緒從開始謹慎小心地試探，逐漸敞開而趨於激昂地抒發，再回歸平靜，進入最後一段，回到最初的降Ｄ大調，順暢平穩地往前行，如同平和地接納一切，平靜地結束。這個樂章兼具優美與張力，且有深廣的意境，也被單獨拿出來作為弦樂團的音樂會曲目。
-                IV. Finale: Grave, ma non troppo tratto — Allegro
-                貝多芬罕見地給這個樂章標題「艱難的決定」，並且寫下了帶有哲學意味自問自答的文字：Muss es sein?（一定要這樣嗎？）Es muss
-                sein!（一定要這樣！）。可以說是全曲精神核心，分為兩部分。一、Ｆ小調慢板導言（Grave）：也就是提問的部分，沈重的猶疑，尖銳的不諧合音反映了極大的不安。二、Ｆ大調的快板主段（Allegro）：音樂突然轉為明亮果斷、節奏堅定，像下定決心向前，清楚表達了「一定要這樣」，勇往直前！可以這樣理解：前半是人生的遲疑與疑問，後半是對命運的肯定回應；不是悲壯的抗爭，而是明快、堅定而且幽默的接受。有學者說，如果
-                Op.131 是形而上的宇宙，那 Op.135 是回到人間的一句：「我明白了。」</div>
-        </div>
-
-        <div class="staff-section">
-            <h4>— STAFF —</h4>
-            <div class="staff-grid">
-                <div class="staff-item"><strong>行政總監</strong> <span>陳小明</span></div>
-                <div class="staff-item"><strong>舞台監督</strong> <span>王大同</span></div>
-                <div class="staff-item"><strong>錄音工程</strong> <span>李美玲</span></div>
-                <div class="staff-item"><strong>平面設計</strong> <span>趙家豪</span></div>
-                <div class="staff-item"><strong>現場招待</strong> <span>醫聲志工團</span></div>
-                <div class="staff-item"><strong>影像紀錄</strong> <span>攝影工作室</span></div>
+                <p>貝多芬《弦樂四重奏第16號，F大調，Op.135》於1826年十月完成（五個月後於1827/3/26過世），1828年首演。除了之後為Op.130重寫的第四樂章之外，此曲是整個弦樂四重奏創作的終點與總結，和前幾首「晚期四重奏」突破傳統形式和深沉神秘的內涵不同，這首格外精練簡潔和明朗清澈，回到傳統四樂章的形式，且和同時期重寫的Op.130第四樂章一樣，具有古典時期的曲風。全曲雖然相對篇幅較短，仍然展現了大格局和豐富的內涵，有內歛深廣也有狂野奔放的時候、且不乏慧黠的幽默感。
+                </p>
+                <p style="text-indent:0;">我們將演奏第三與第四樂章，簡介如下：</p>
+                <span class="movement-label">III. Lento assai, cantante e tranquillo（降Ｄ大調）</span>
+                <p>篇幅很短，時間卻彷彿被拉長變慢了，又分為三個段落，首先從極度安靜的氛圍中，緩緩展開如歌的詠唱，又如宗教性虔誠的祈禱，第二段轉為升Ｃ小調，像是進入內在的探求、誠摯的告白。這兩段有許多如髮夾般的漸強漸弱記號，漸強之後常緊接著弱音記號，如同情緒與呼吸起伏的控制閥，營造了阻滯壓抑如同煞車作用的效果，和Op.
+                    130著名的Cavatina樂章有共同之處（貝多芬在其中寫下Beklemmt-壓抑-這個字），情緒從開始謹慎小心地試探，逐漸敞開而趨於激昂地抒發，再回歸平靜，進入最後一段，回到最初的降Ｄ大調，順暢平穩地往前行，如同平和地接納一切，平靜地結束。這個樂章兼具優美與張力，且有深廣的意境，也被單獨拿出來作為弦樂團的音樂會曲目。
+                </p>
+                <span class="movement-label">IV. Finale: Grave, ma non troppo tratto — Allegro</span>
+                <p>貝多芬罕見地給這個樂章標題「艱難的決定」，並且寫下了帶有哲學意味自問自答的文字：Muss es sein?（一定要這樣嗎？）Es muss
+                    sein!（一定要這樣！）。可以說是全曲精神核心，分為兩部分。一、Ｆ小調慢板導言（Grave）：也就是提問的部分，沈重的猶疑，尖銳的不諧合音反映了極大的不安。二、Ｆ大調的快板主段（Allegro）：音樂突然轉為明亮果斷、節奏堅定，像下定決心向前，清楚表達了「一定要這樣」，勇往直前！可以這樣理解：前半是人生的遲疑與疑問，後半是對命運的肯定回應；不是悲壯的抗爭，而是明快、堅定而且幽默的接受。有學者說，如果
+                    Op.131 是形而上的宇宙，那 Op.135 是回到人間的一句：「我明白了。」</p>
             </div>
         </div>
 
-        <div class="closing-footer">
-            <div class="closing-title">感謝聆聽</div>
-            <div class="closing-sub">感謝今晚所有參與的演出者與觀眾</div>
-            <div class="copyright">© 2026 MEDICAL VOICE CHAMBER CONCERT</div>
-        </div>
         <div class="page-number">V</div>
     </div>
 
